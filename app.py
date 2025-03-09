@@ -1,7 +1,6 @@
 import streamlit as st
 import random
 import string
-import qrcode
 from io import BytesIO
 import base64
 import time
@@ -17,12 +16,6 @@ def generate_password(length=12, use_symbols=True, use_numbers=True, use_upperca
     
     return ''.join(random.choice(characters) for _ in range(length))
 
-def generate_qr_code(password):
-    qr = qrcode.make(password + f' (Generated: {time.strftime("%Y-%m-%d %H:%M:%S")})')
-    buf = BytesIO()
-    qr.save(buf, format='PNG')
-    encoded_qr = base64.b64encode(buf.getvalue()).decode()
-    return encoded_qr
 
 def analyze_strength(password):
     score = 0
@@ -99,10 +92,7 @@ if st.button("Generate Password"):
             st.write(f"- {tip}")
     elif strength == "Strong":
         st.success("Your password is strong and secure!")
-    
-    qr_code = generate_qr_code(password)
-    st.image(BytesIO(base64.b64decode(qr_code)), caption="Scan to save password")
-
+   
 st.header("📜 Password History")
 if password_history:
     st.write("Recent Passwords:")
