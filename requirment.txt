@@ -1,5 +1,3 @@
-BytesIO
+streamlit
 qrcode[pil]
-random
-base64
-time
+pillow
