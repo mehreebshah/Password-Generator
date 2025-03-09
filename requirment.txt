@@ -1,5 +1,5 @@
 BytesIO
-qrcode
+qrcode[pil]
 random
 base64
 time
